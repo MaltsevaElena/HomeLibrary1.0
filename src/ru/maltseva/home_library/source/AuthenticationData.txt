@@ -1,0 +1,1 @@
+name=Elena - e-mail=elena@mail.ru - login=Elena - password=7623fc6081a28e273dfe5f3f3d077c8bd09936c4 - role=Admin
