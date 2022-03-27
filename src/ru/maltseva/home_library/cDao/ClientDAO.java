@@ -8,5 +8,6 @@ public interface ClientDAO {
 
     boolean saveUser(String request) throws DAOException; //готово
 
-    String userCreation (String login) throws DAOException;
+    String gettingClient (String login) throws DAOException;
 }
+

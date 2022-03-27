@@ -55,16 +55,19 @@ public class FileClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public String userCreation(String logins) throws DAOException {
+    public String gettingClient(String login) throws DAOException {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(CLIENT_SOURCE))) {
             String line;
+            String[] dataBaseLine;
             while ((line = reader.readLine()) != null) {
-                if (line.contains(logins)) {
-                    return line;
+                dataBaseLine = line.split(" - ");
+                for (String dataLine : dataBaseLine ){
+                    if (dataLine.equals(login)) {
+                        return line;
+                    }
                 }
             }
-
         } catch (IOException e) {
             throw new DAOException(e);
         }

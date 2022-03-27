@@ -7,15 +7,14 @@ import ru.maltseva.home_library.cDao.DAOException;
 import ru.maltseva.home_library.cDao.DAOProvider;
 import ru.maltseva.home_library.entity.Administrator;
 import ru.maltseva.home_library.entity.Client;
-import ru.maltseva.home_library.entity.Role;
+import ru.maltseva.home_library.entity.User;
 
 public class ClientServiceImpl implements ClientService {
 
     private final DAOProvider provider = DAOProvider.getInstance();
 
-
     @Override
-    public boolean verificationParam(String ... param) throws ServiceException {
+    public boolean verificationParam(String... param) throws ServiceException {
         ClientDAO clientDAO;
         boolean result;
 
@@ -27,34 +26,6 @@ public class ClientServiceImpl implements ClientService {
             throw new ServiceException(e);
         }
         return result;
-    }
-
-    @Override
-    public Client userCreation(String login) throws ServiceException {
-        String line;
-        String [] params;
-        Client client;
-        ClientDAO clientDAO = provider.getClientDAO();
-
-        try{
-            line = clientDAO.userCreation(login);
-        }catch (DAOException e){
-            throw new ServiceException(e);
-        }
-       // System.out.println("line = "+ line);
-        params = line.split(" ");
-        for (int i = 0; i < params.length; i++) {
-            params[i] = params[i].split("=")[1];
-        }
-
-        if (params[4].equalsIgnoreCase("Admin")){
-            client = new Administrator(params[0],params[1],params[2],params[3], Role.ADMIN);
-        }
-        else {
-            client = new Administrator(params[0],params[1],params[2],params[3], Role.USER);
-        }
-
-        return client;
     }
 
     @Override
@@ -74,4 +45,35 @@ public class ClientServiceImpl implements ClientService {
         return result;
     }
 
+    @Override
+    public Client clientCreation(String login) throws ServiceException {
+        Client client;
+
+        String line;
+        String[] params;
+        ClientDAO clientDAO;
+
+
+        clientDAO = provider.getClientDAO();
+        try {
+            line = clientDAO.gettingClient(login);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        params = line.split(" - ");
+
+
+        for (int i = 0; i < params.length; i++) {
+            params[i] = params[i].split("=")[1];
+        }
+
+        if (params[4].equals("Admin")) {
+            client = new Administrator(params[0], params[1], params[2], params[3]);
+        } else {
+            client = new User(params[0], params[1], params[2], params[3]);
+        }
+
+        return client;
+    }
 }

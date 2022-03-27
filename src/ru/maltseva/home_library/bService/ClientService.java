@@ -4,8 +4,9 @@ import ru.maltseva.home_library.entity.Client;
 
 public interface ClientService {
 
-    boolean registration(String request) throws ServiceException;
-     boolean verificationParam(String ... param) throws ServiceException;
+    boolean verificationParam(String ... param) throws ServiceException;
 
-    Client userCreation (String login) throws ServiceException;
+    boolean registration(String request) throws ServiceException;
+
+    Client clientCreation (String login) throws ServiceException;
 }

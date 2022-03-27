@@ -1,9 +1,13 @@
 package ru.maltseva.home_library.main;
 
 import ru.maltseva.home_library.aController.authorization.*;
+import ru.maltseva.home_library.aController.authorization.implCreationClient.CreationClientImpl;
 import ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand.EnterAuthorization;
 import ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand.EnterRegistration;
 import ru.maltseva.home_library.aController.authorization.implEnterToConsoleMenu.EnterNumberMenu;
+import ru.maltseva.home_library.entity.Administrator;
+import ru.maltseva.home_library.entity.Client;
+import ru.maltseva.home_library.entity.User;
 import ru.maltseva.home_library.view.Menu;
 import ru.maltseva.home_library.view.impl.MenuSingIn;
 
@@ -18,13 +22,16 @@ public class MainSingIn {
         EnterToConsoleMenu enterMenu;
         EnterToConsoleCommand enterCommand;
 
-        String request;
+        String request = null;
         int responseMenu;
         int result;
 
         boolean resultSingIn = false;
 
-       //вывели на экран приветствие
+        CreationClient creationClient;
+        Client client;
+
+        //вывели на экран приветствие
         menu = new MenuSingIn();
         menu.menuCommand();
 
@@ -39,18 +46,22 @@ public class MainSingIn {
             enterCommand = new EnterRegistration();
         }
 
-        while (!resultSingIn){ //если команда завершиться с ошибкой, начать ввод данных снова
+        while (!resultSingIn) { //если команда завершиться с ошибкой, начать ввод данных снова
 
             //Authorization - login=malceva - password=1234
-            request =enterCommand.enterData().toString();
+            request = enterCommand.enterData().toString();
             //создадим контроллер, он создал провайдер, теперь нужно передать строку для вызова нужного класса
             controllerProvider = ControllerProvider.getInstance();
-            controller= controllerProvider.getController();
+            controller = controllerProvider.getController();
 
             //передали строку в контроллер
             resultSingIn = controller.doAction(request);
 
         }
-        MainBook.start();
+
+        creationClient = CreationClientImpl.getInstance();
+        client = creationClient.creationClient(request);
+
+        MainBook.start(client);
     }
 }
