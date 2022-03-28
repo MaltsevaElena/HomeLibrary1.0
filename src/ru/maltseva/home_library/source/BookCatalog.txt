@@ -1,1 +1,7 @@
-1 Искатель Дмитрий_Кружевский 2011 Бумажная_книга Он мечтал о звездах. Но долог путь к мечте и на этом пути будет многое: встречи, расставания, потери, настоящая дружба, приключения и конечно любовь.
+id=1 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
+id=2 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
+id=3 - name=Java - author=Ekkel - year=2022 - typeBook=EBOOK - description=Книга для изучения Java
+id=4 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
+id=5 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
+id=6 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
+id=7 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java

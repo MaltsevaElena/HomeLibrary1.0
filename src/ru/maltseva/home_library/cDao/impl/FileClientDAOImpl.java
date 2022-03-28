@@ -4,6 +4,8 @@ import ru.maltseva.home_library.cDao.ClientDAO;
 import ru.maltseva.home_library.cDao.DAOException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileClientDAOImpl implements ClientDAO {
     private static final String CLIENT_SOURCE = "C:\\ForJava\\HomeLibrary1.0\\src\\ru\\maltseva\\home_library\\source" +
@@ -51,7 +53,7 @@ public class FileClientDAOImpl implements ClientDAO {
             throw new DAOException(e);
         }
 
-        return true;//в каком случае вернется фолс?
+        return true;
     }
 
     @Override
@@ -62,7 +64,7 @@ public class FileClientDAOImpl implements ClientDAO {
             String[] dataBaseLine;
             while ((line = reader.readLine()) != null) {
                 dataBaseLine = line.split(" - ");
-                for (String dataLine : dataBaseLine ){
+                for (String dataLine : dataBaseLine) {
                     if (dataLine.equals(login)) {
                         return line;
                     }
@@ -74,4 +76,26 @@ public class FileClientDAOImpl implements ClientDAO {
         return "Пользователь не найден.";
     }
 
+    @Override
+    public List<String> email(String allEmail) throws DAOException {
+        List<String> emailList = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(CLIENT_SOURCE))) {
+            String line;
+            String[] dataBaseLine;
+            while ((line = reader.readLine()) != null) {
+                dataBaseLine = line.split(" - ");
+                if (allEmail.equals("role=Admin")) {
+                    if (dataBaseLine[4].equals("role=Admin")) {
+                        emailList.add(dataBaseLine[1]);
+                    }
+                } else {
+                    emailList.add(dataBaseLine[1]);
+                }
+            }
+        } catch (IOException e) {
+            throw new DAOException(e);
+        }
+        return emailList;
+    }
 }

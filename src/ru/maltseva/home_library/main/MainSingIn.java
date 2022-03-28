@@ -5,16 +5,14 @@ import ru.maltseva.home_library.aController.authorization.implCreationClient.Cre
 import ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand.EnterAuthorization;
 import ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand.EnterRegistration;
 import ru.maltseva.home_library.aController.authorization.implEnterToConsoleMenu.EnterNumberMenu;
-import ru.maltseva.home_library.entity.Administrator;
 import ru.maltseva.home_library.entity.Client;
-import ru.maltseva.home_library.entity.User;
-import ru.maltseva.home_library.view.Menu;
-import ru.maltseva.home_library.view.impl.MenuSingIn;
+import ru.maltseva.home_library.view.MenuSingIn;
+import ru.maltseva.home_library.view.impl.MenuSingInImp;
 
 public class MainSingIn {
 
     public static void start() {
-        Menu menu;
+        MenuSingIn menuSingIn;
 
         ControllerProvider controllerProvider;
         Controller controller;
@@ -32,8 +30,8 @@ public class MainSingIn {
         Client client;
 
         //вывели на экран приветствие
-        menu = new MenuSingIn();
-        menu.menuCommand();
+        menuSingIn = new MenuSingInImp();
+        menuSingIn.menuCommand();
 
         //запросили у пользователя номер команды
         enterMenu = new EnterNumberMenu();

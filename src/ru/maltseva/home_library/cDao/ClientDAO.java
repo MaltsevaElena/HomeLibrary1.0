@@ -1,13 +1,17 @@
 package ru.maltseva.home_library.cDao;
 
 
+import java.util.List;
+
 public interface ClientDAO {
 
 
-    boolean verificationParam(String ... param) throws DAOException; //готово
+    boolean verificationParam(String ... param) throws DAOException;
 
-    boolean saveUser(String request) throws DAOException; //готово
+    boolean saveUser(String request) throws DAOException;
 
     String gettingClient (String login) throws DAOException;
+
+    List <String> email (String allEmail) throws DAOException;
 }
 

@@ -26,7 +26,7 @@ public class BookServiceImpl implements BookService {
         String line2;
 
         try {
-            bookList = bookDAO.readFileBook();
+            bookList = bookDAO.getAllBook();
         } catch (DAOException e) {
            throw new ServiceException(e);
         }
@@ -58,7 +58,7 @@ public class BookServiceImpl implements BookService {
 
         try {
             // считывает из файла строки с книгами
-            bookCatalog = bookDAO.readFileBook();
+            bookCatalog = bookDAO.getAllBook();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

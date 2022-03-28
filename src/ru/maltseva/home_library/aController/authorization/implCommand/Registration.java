@@ -28,7 +28,7 @@ public class Registration implements Command {
             e.printStackTrace();
         }
 
-        answerForUser = viewProvider.getUserActionView();
+        answerForUser = viewProvider.getAnswerForUser();
         answerForUser.UserAnswer(this.getClass().getSimpleName(), answer);
 
         return answer;

@@ -6,7 +6,12 @@ import java.util.List;
 
 public interface BookDAO {
 
-    boolean addBook(Book book)throws DAOException;
-    List<String> readFileBook() throws DAOException;
+    boolean addBook(Book book) throws DAOException;
+
+    List<String> getAllBook() throws DAOException;
+
+    boolean changeBook (int idBook, String parameter) throws DAOException;
+
+    boolean deleteBook (int idBook) throws DAOException;
 
 }

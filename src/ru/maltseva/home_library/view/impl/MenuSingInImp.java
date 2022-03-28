@@ -1,8 +1,8 @@
 package ru.maltseva.home_library.view.impl;
 
-import ru.maltseva.home_library.view.Menu;
+import ru.maltseva.home_library.view.MenuSingIn;
 
-public class MenuSingIn implements Menu {
+public class MenuSingInImp implements MenuSingIn {
     @Override
     public void menuCommand() {
         System.out.println("Добро пожаловать в программу учета книг.");

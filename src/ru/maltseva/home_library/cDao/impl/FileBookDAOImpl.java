@@ -4,59 +4,56 @@ import ru.maltseva.home_library.cDao.BookDAO;
 import ru.maltseva.home_library.cDao.DAOException;
 import ru.maltseva.home_library.entity.Book;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FileBookDAOImpl implements BookDAO {
 
-    private static final String BOOKS_SOURCE = "C:\\Документы и фото\\Обучение Java\\IdeaProjects\\Java15\\modul6\\" +
-            "modul6\\source\\BookCatalog.txt";
+    private static final String BOOKS_SOURCE = "C:\\ForJava\\HomeLibrary1.0\\src\\ru\\maltseva\\" +
+            "home_library\\source\\BookCatalog.txt";
 
+    @Override
+    public boolean addBook(Book book) throws DAOException {
+        int size;
+        int maxId;
 
-    public List<String> searchBook(String request) throws DAOException {
+        List<String> allBook;
+        StringBuilder stringBook;
 
-        List<String> allBooks;
-        List<String> searchBook;
+        allBook = getAllBook();
+        size = allBook.size();
 
-        Pattern pattern;
-        Matcher matcher;
-
-        searchBook = new ArrayList<>();
-        pattern = Pattern.compile(request);
-
-        allBooks = readFileBook();
-
-        for (String book : allBooks) {
-            matcher = pattern.matcher(book);
-            while (matcher.find()) {
-                searchBook.add(book);
+        if (size == 0) {
+            maxId = 1;
+        } else {
+            try {
+                maxId = Integer.parseInt(allBook.get(size - 1).split(" - ")[0].split("=")[1]) + 1;
+                //берем последнюю книгу, определяем ее id прибавляем 1
+            } catch (NumberFormatException e) {
+                throw new DAOException(e);
             }
         }
-        return searchBook;
+        stringBook = new StringBuilder();
+        stringBook.append("id=").append(maxId).append(" - name=").append(book.getName())
+                .append(" - author=").append(book.getAuthor()).append(" - year=")
+                .append(book.getYear()).append(" - typeBook=").append(book.getTypeBook().name())
+                .append(" - description=").append(book.getDescription());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_SOURCE, true))) {
+            writer.write(String.valueOf(stringBook));
+            writer.append("\n");
+
+        } catch (IOException e) {
+            throw new DAOException(e);
+        }
+
+        return true;
     }
 
-    @Override
-    public boolean addBook(Book book) {
-
-        /*
-        открыть файл
-        высчитать айди
-        сформировать строчку из бук
-        записать строчку в файл
-        если все ок вернуть тру
-         */
-        return false;
-    }
-
 
     @Override
-    public List<String> readFileBook() throws DAOException {
+    public List<String> getAllBook() throws DAOException {
         List<String> listBook = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(BOOKS_SOURCE))) {
@@ -74,5 +71,78 @@ public class FileBookDAOImpl implements BookDAO {
         }
 
         return listBook;
+    }
+
+    @Override
+    public boolean changeBook(int idBook, String parameter) throws DAOException {
+        List<String> listBook = getAllBook();
+        int id;
+        String[] parameterBook;
+        String nameParameter;
+        StringBuilder changeBook = new StringBuilder();
+
+        nameParameter = parameter.split("=")[0];
+        try {
+            new FileWriter(BOOKS_SOURCE, false).close();
+        } catch (IOException e) {
+            throw new DAOException(e);
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_SOURCE, true))) {
+
+            for (int i = 0; i < listBook.size(); i++) {
+                id = Integer.parseInt(listBook.get(i).split(" - ")[0].split("=")[1]);
+                if (id == idBook) {
+                    parameterBook = listBook.get(i).split(" - ");
+                    for (int j = 0; j < parameterBook.length; j++) {
+                        if (parameterBook[j].contains(nameParameter)) {
+                            parameterBook[j] = parameter;
+                        }
+                    }
+                    for  (int k = 0; k < parameterBook.length; k++) {
+                        changeBook.append(parameterBook[k]);
+                        if (k!= parameterBook.length-1){
+                            changeBook.append(" - ");
+                        }
+                    }
+                    listBook.set(i, changeBook.toString());
+                }
+                writer.write(listBook.get(i));
+                writer.append("\n");
+            }
+        } catch (NumberFormatException | IOException e) {
+            throw new DAOException(e);
+        }
+
+        return true;
+    }
+
+
+    @Override
+    public boolean deleteBook(int idBook) throws DAOException {
+        List<String> listBook = getAllBook();
+        int id;
+
+        try {
+            new FileWriter(BOOKS_SOURCE, false).close();
+        } catch (IOException e) {
+            throw new DAOException(e);
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_SOURCE, true))) {
+
+            for (int i = 0; i < listBook.size(); i++) {
+                id = Integer.parseInt(listBook.get(i).split(" - ")[0].split("=")[1]);
+                if (id == idBook) {
+                    listBook.remove(listBook.get(i));
+                    --i;
+                    continue;
+                }
+                writer.write(listBook.get(i));
+                writer.append("\n");
+            }
+        } catch (NumberFormatException | IOException e) {
+            throw new DAOException(e);
+        }
+
+        return true;
     }
 }

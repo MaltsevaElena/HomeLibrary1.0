@@ -33,7 +33,7 @@ public class Authorization implements Command {
             e.printStackTrace();
         }
 
-        answerForUser = viewProvider.getUserActionView();
+        answerForUser = viewProvider.getAnswerForUser();
         answerForUser.UserAnswer(this.getClass().getSimpleName(), answer);
 
         return answer;

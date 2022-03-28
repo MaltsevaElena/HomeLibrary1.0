@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Book {
 
-    private static int count = 0;
+    private static int count;
     private int id;
     private String name;
     private String author;
@@ -77,10 +77,9 @@ public class Book {
         return typeBook;
     }
 
-    public void setType(TypeBook typeBook) {
+    public void setTypeBook(TypeBook typeBook) {
         this.typeBook = typeBook;
     }
-
     public String getDescription() {
         return description;
     }
