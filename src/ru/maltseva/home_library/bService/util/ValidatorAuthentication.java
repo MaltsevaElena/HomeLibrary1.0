@@ -53,7 +53,7 @@ public class ValidatorAuthentication {
      */
     public boolean isName(String request) {
 
-        Pattern pattern = Pattern.compile("(^[a-zA-z])([a-zA-z]{2,14})$");
+        Pattern pattern = Pattern.compile("(^[a-zA-z]{2,14})$");
         Matcher matcher = pattern.matcher(request);
 
         return matcher.matches();

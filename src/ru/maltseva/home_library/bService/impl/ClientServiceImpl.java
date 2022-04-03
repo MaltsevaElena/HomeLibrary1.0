@@ -9,6 +9,8 @@ import ru.maltseva.home_library.entity.Administrator;
 import ru.maltseva.home_library.entity.Client;
 import ru.maltseva.home_library.entity.User;
 
+import java.util.List;
+
 public class ClientServiceImpl implements ClientService {
 
     private final DAOProvider provider = DAOProvider.getInstance();
@@ -75,5 +77,20 @@ public class ClientServiceImpl implements ClientService {
         }
 
         return client;
+    }
+
+    @Override
+    public List<String> sendEmail(String roleUser) throws ServiceException {
+        ClientDAO clientDAO;
+        List<String> email;
+
+        clientDAO = provider.getClientDAO();
+        try {
+            email = clientDAO.email(roleUser);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return email;
     }
 }

@@ -5,15 +5,12 @@ import java.util.regex.Pattern;
 
 public class ValidatorBook {
 
-    private static ValidatorBook instance = null;
+    private static ValidatorBook instance = new ValidatorBook();
 
     public ValidatorBook() {
     }
 
     public static ValidatorBook getInstance() {
-        if (instance == null) {
-            instance = new ValidatorBook();
-        }
         return instance;
     }
 

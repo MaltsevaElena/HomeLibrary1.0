@@ -12,6 +12,6 @@ public interface ClientDAO {
 
     String gettingClient (String login) throws DAOException;
 
-    List <String> email (String allEmail) throws DAOException;
+    List <String> email (String roleUser) throws DAOException;
 }
 

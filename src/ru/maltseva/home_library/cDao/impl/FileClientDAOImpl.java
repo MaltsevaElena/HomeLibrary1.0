@@ -77,7 +77,7 @@ public class FileClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public List<String> email(String allEmail) throws DAOException {
+    public List<String> email(String roleUser) throws DAOException {
         List<String> emailList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(CLIENT_SOURCE))) {
@@ -85,7 +85,7 @@ public class FileClientDAOImpl implements ClientDAO {
             String[] dataBaseLine;
             while ((line = reader.readLine()) != null) {
                 dataBaseLine = line.split(" - ");
-                if (allEmail.equals("role=Admin")) {
+                if (roleUser.equals("role=Admin")) {
                     if (dataBaseLine[4].equals("role=Admin")) {
                         emailList.add(dataBaseLine[1]);
                     }

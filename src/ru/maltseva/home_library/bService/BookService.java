@@ -6,8 +6,19 @@ import java.util.List;
 
 public interface BookService {
 
+    List<Book> viewingBooks() throws ServiceException;
+
     List<Book> searchBook(String request) throws ServiceException;
-    boolean addBook(Book book);
-    List<Book> ViewingBooks() throws ServiceException;
+
+    boolean addBook(Book book) throws ServiceException;
+
+    boolean editBook(int idBook, String parameter) throws ServiceException;
+
+    boolean deleteBook(int idBook) throws ServiceException;
+
+
+
+
+
 
 }

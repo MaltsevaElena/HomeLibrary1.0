@@ -10,45 +10,100 @@ import ru.maltseva.home_library.entity.TypeBook;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class BookServiceImpl implements BookService {
 
     private final DAOProvider provider = DAOProvider.getInstance();
-    private final BookDAO bookDAO = provider.getBookDAO();
+
+    @Override
+    public List<Book> viewingBooks() throws ServiceException {
+        List<String> bookCatalog;
+        List<Book> allBook;
+        BookDAO bookDAO;
+
+        bookDAO = provider.getBookDAO();
+        try {
+            bookCatalog = bookDAO.getAllBook();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        allBook = createBook(bookCatalog);
+        return allBook;
+    }
 
     @Override
     public List<Book> searchBook(String request) throws ServiceException {
-        //id=123
-        //Author=Дмитрий
-        List <String> bookList; // книги в виде строк
-        String line1;
-        String line2;
+        List<String> allBookList;
+        List<Book> searchBook;
+        BookDAO bookDAO;
 
+        bookDAO = provider.getBookDAO();
         try {
-            bookList = bookDAO.getAllBook();
+            allBookList = bookDAO.getAllBook();
         } catch (DAOException e) {
-           throw new ServiceException(e);
+            throw new ServiceException(e);
         }
 
-        line1 = request.split("=")[0];
-        line2 = request.split("=")[1];
+        for (String line: allBookList){
+            if (!line.contains(request)){
+                allBookList.remove(line);
+            }
+        }
 
-        Pattern pattern = Pattern.compile("");
-        //“A.+a”// Ищет максимальное по длине совпадение в строке.
-        // Строчка которая придет разделить через =
-        return null;
+        searchBook = createBook(allBookList);
+
+        return searchBook;
     }
 
 
     @Override
-    public boolean addBook(Book book) {
-        return false;
+    public boolean addBook(Book book) throws ServiceException {
+        boolean result;
+        BookDAO bookDAO;
+
+        bookDAO = provider.getBookDAO();
+
+        try {
+            result = bookDAO.addBook(book);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return result;
     }
 
     @Override
-    public List<Book> ViewingBooks() throws ServiceException {
-        List<String> bookCatalog;
+    public boolean editBook(int idBook, String parameter) throws ServiceException {
+        boolean result;
+        BookDAO bookDAO;
+
+        bookDAO = provider.getBookDAO();
+
+        try {
+            result = bookDAO.changeBook(idBook, parameter);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteBook(int idBook) throws ServiceException {
+        boolean result;
+        BookDAO bookDAO;
+
+        bookDAO = provider.getBookDAO();
+
+        try {
+            result = bookDAO.deleteBook(idBook);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return result;
+    }
+
+
+    public List<Book> createBook(List<String> allBookList) throws ServiceException {
         List<Book> allBook = new ArrayList<>();
         String[] array;
         int id;
@@ -56,16 +111,8 @@ public class BookServiceImpl implements BookService {
         TypeBook typeBook;
         Book book;
 
-        try {
-            // считывает из файла строки с книгами
-            bookCatalog = bookDAO.getAllBook();
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
-
-        // На основании полученных строк создаем коллекцию книг
-        for (String s : bookCatalog) {
-            array = s.split(" ", 6); //6 полей у класса BOOK
+        for (String line : allBookList) {
+            array = line.split(" - ");
             try {
                 id = Integer.parseInt(array[0]);
                 year = Integer.parseInt(array[3]);
@@ -83,5 +130,6 @@ public class BookServiceImpl implements BookService {
             allBook.add(book);
         }
         return allBook;
+
     }
 }
