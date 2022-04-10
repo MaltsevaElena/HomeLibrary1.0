@@ -118,6 +118,7 @@ public class FileBookDAOImpl implements BookDAO {
     @Override
     public boolean deleteBook(int idBook) throws DAOException {
         List<String> listBook = getAllBook();
+        int listSize = listBook.size();
         int id;
 
         try {
@@ -130,9 +131,8 @@ public class FileBookDAOImpl implements BookDAO {
             for (int i = 0; i < listBook.size(); i++) {
                 id = Integer.parseInt(listBook.get(i).split(" - ")[0].split("=")[1]);
                 if (id == idBook) {
-                    listBook.remove(listBook.get(i));
+                    listBook.remove(i);
                     --i;
-                    return true;
                 }
                 writer.write(listBook.get(i));
                 writer.append("\n");
@@ -141,6 +141,6 @@ public class FileBookDAOImpl implements BookDAO {
             throw new DAOException(e);
         }
 
-        return false;
+        return !(listSize ==listBook.size());
     }
 }

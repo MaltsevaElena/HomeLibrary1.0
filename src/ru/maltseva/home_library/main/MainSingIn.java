@@ -2,12 +2,10 @@ package ru.maltseva.home_library.main;
 
 import ru.maltseva.home_library.aController.*;
 import ru.maltseva.home_library.aController.implCreationClient.CreationUserImpl;
-import ru.maltseva.home_library.aController.implEnterToConsoleCommand.EnterAuthorization;
-import ru.maltseva.home_library.aController.implEnterToConsoleCommand.EnterRegistration;
-import ru.maltseva.home_library.aController.implEnterToConsoleMenu.EnterNumberMenu;
 import ru.maltseva.home_library.entity.User;
 import ru.maltseva.home_library.view.MenuSingIn;
-import ru.maltseva.home_library.view.impl.MenuSingInImp;
+import ru.maltseva.home_library.view.ViewProvider;
+
 
 public class MainSingIn {
 
@@ -16,32 +14,34 @@ public class MainSingIn {
 
         ControllerProvider controllerProvider;
         Controller controller;
+        ViewProvider viewProvider;
 
         EnterToConsoleMenu enterMenu;
         EnterToConsoleCommand enterCommand;
+        EnterToConsoleProvider enterToConsoleProvider;
 
         String request = null;
         int responseMenu;
-        int result;
-
         boolean resultSingIn = false;
 
         CreationUser creationUser;
         User user;
 
         //вывели на экран приветствие
-        menuSingIn = new MenuSingInImp();
+        viewProvider = ViewProvider.getInstance();
+        menuSingIn = viewProvider.getMenuSingIn();
         menuSingIn.menuCommand();
 
         //запросили у пользователя номер команды
-        enterMenu = new EnterNumberMenu();
+        enterToConsoleProvider= EnterToConsoleProvider.getInstance();
+        enterMenu = enterToConsoleProvider.getEnterToConsoleMenu();
         responseMenu = enterMenu.enterNumberMenu(2);
 
         if (responseMenu == 1) {
-            enterCommand = new EnterAuthorization();
+            enterCommand = enterToConsoleProvider.getEnterToConsoleCommand("EnterAuthorization");
 
         } else {
-            enterCommand = new EnterRegistration();
+            enterCommand = enterToConsoleProvider.getEnterToConsoleCommand("EnterRegistration");
         }
 
         while (!resultSingIn) { //если команда завершиться с ошибкой, начать ввод данных снова

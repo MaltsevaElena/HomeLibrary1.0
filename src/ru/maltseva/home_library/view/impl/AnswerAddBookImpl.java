@@ -1,10 +1,10 @@
 package ru.maltseva.home_library.view.impl;
 
-import ru.maltseva.home_library.view.AnswerToActionOnBook;
+import ru.maltseva.home_library.view.AnswerAddBook;
 
-public class AnswerAddBook implements AnswerToActionOnBook {
+public class AnswerAddBookImpl implements AnswerAddBook {
     @Override
-    public void answerToActionOnBook(boolean result) {
+    public void answer(boolean result) {
         if (result) {
             System.out.println("Book successfully added.");
         } else {

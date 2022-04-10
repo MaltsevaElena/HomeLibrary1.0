@@ -18,7 +18,7 @@ public class EnterSearchBook implements EnterToConsoleCommand {
         @SuppressWarnings("resource")
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("Для поиска книги выберите критерий поиска:");
+        System.out.println("Критерий для поиска книги:");
         System.out.println("-> ");
 
         try {

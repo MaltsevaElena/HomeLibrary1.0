@@ -7,7 +7,9 @@ public class ViewProvider {
     private final MenuSingIn menuSingIn;
     private final MenuBook menuBook;
     private final ShowBook showBook;
-    private final AnswerToActionOnBook answerToActionOnBook;
+    private final AnswerAddBook answerAddBook;
+    private final AnswerSendEmail answerSendEmail;
+    private final AnswerDeleteBook answerDeleteBook;
 
     private static ViewProvider instance = new ViewProvider();
 
@@ -17,7 +19,9 @@ public class ViewProvider {
         menuSingIn = new MenuSingInImp();
         menuBook = new MenuBookImp();
         showBook = new ShowAllBook();
-        answerToActionOnBook = new AnswerDeleteBookImpl();// сделать map
+        answerAddBook = new AnswerAddBookImpl();
+        answerSendEmail = new AnswerSendEmailImpl();
+        answerDeleteBook = new AnswerDeleteBookImpl();
     }
 
     public static ViewProvider getInstance(){
@@ -38,5 +42,17 @@ public class ViewProvider {
 
     public ShowBook getShowBook() {
         return showBook;
+    }
+
+    public AnswerAddBook getAnswerAddBook() {
+        return answerAddBook;
+    }
+
+    public AnswerSendEmail getAnswerSendEmail() {
+        return answerSendEmail;
+    }
+
+    public AnswerDeleteBook getAnswerDeleteBook() {
+        return answerDeleteBook;
     }
 }

@@ -30,6 +30,6 @@ public class BrowsingBook implements Command {
         showBook = viewProvider.getShowBook();
         showBook.showBook(allBook);
 
-        return true;
+        return (allBook != null ? allBook.size() : 0) >0;
     }
 }
