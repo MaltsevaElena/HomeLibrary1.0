@@ -37,7 +37,7 @@ public class FileBookDAOImpl implements BookDAO {
         stringBook = new StringBuilder();
         stringBook.append("id=").append(maxId).append(" - name=").append(book.getName())
                 .append(" - author=").append(book.getAuthor()).append(" - year=")
-                .append(book.getYear()).append(" - typeBook=").append(book.getTypeBook().name())
+                .append(book.getYear()).append(" - typeBook=").append(book.getTypeBook())
                 .append(" - description=").append(book.getDescription());
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_SOURCE, true))) {
@@ -50,7 +50,6 @@ public class FileBookDAOImpl implements BookDAO {
 
         return true;
     }
-
 
     @Override
     public List<String> getAllBook() throws DAOException {
@@ -116,7 +115,6 @@ public class FileBookDAOImpl implements BookDAO {
         return true;
     }
 
-
     @Override
     public boolean deleteBook(int idBook) throws DAOException {
         List<String> listBook = getAllBook();
@@ -134,7 +132,7 @@ public class FileBookDAOImpl implements BookDAO {
                 if (id == idBook) {
                     listBook.remove(listBook.get(i));
                     --i;
-                    continue;
+                    return true;
                 }
                 writer.write(listBook.get(i));
                 writer.append("\n");
@@ -143,6 +141,6 @@ public class FileBookDAOImpl implements BookDAO {
             throw new DAOException(e);
         }
 
-        return true;
+        return false;
     }
 }

@@ -1,6 +1,6 @@
-package ru.maltseva.home_library.aController.authorization.implEnterToConsoleMenu;
+package ru.maltseva.home_library.aController.implEnterToConsoleMenu;
 
-import ru.maltseva.home_library.aController.authorization.EnterToConsoleMenu;
+import ru.maltseva.home_library.aController.EnterToConsoleMenu;
 
 import java.util.Scanner;
 
@@ -8,6 +8,7 @@ public class EnterNumberMenu implements EnterToConsoleMenu {
 
     @Override
     public int enterNumberMenu(int maxItemMenu) {
+
         int number;
 
         @SuppressWarnings("resource")

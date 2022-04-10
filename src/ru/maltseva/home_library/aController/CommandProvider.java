@@ -1,7 +1,6 @@
-package ru.maltseva.home_library.aController.authorization;
+package ru.maltseva.home_library.aController;
 
-import ru.maltseva.home_library.aController.authorization.implCommand.Authorization;
-import ru.maltseva.home_library.aController.authorization.implCommand.Registration;
+import ru.maltseva.home_library.aController.implCommand.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +13,12 @@ public final class CommandProvider {
         commands = new HashMap<>();
         commands.put("Authorization", new Authorization());
         commands.put("Registration", new Registration());
-       // commands.put("ViewingBooks", new ViewingBooks());
-       // commands.put("SearchBook", new SearchBook());
+        commands.put("BrowsingBook", new BrowsingBook());
+        commands.put("SearchBook", new SearchBook());
+        commands.put("AddBook", new AddBook());
+        commands.put("EditingBook", new EditingBook());
+        commands.put("DeleteBook", new DeleteBook());
+
     }
 
     public static CommandProvider getInstance() {

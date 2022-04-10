@@ -10,7 +10,7 @@ public interface BookService {
 
     List<Book> searchBook(String request) throws ServiceException;
 
-    boolean addBook(Book book) throws ServiceException;
+    boolean addBook(String book) throws ServiceException;
 
     boolean editBook(int idBook, String parameter) throws ServiceException;
 

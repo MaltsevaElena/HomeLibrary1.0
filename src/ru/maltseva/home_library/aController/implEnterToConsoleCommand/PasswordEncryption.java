@@ -1,4 +1,4 @@
-package ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand;
+package ru.maltseva.home_library.aController.implEnterToConsoleCommand;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

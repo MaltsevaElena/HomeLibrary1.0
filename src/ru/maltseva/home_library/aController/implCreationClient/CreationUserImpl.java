@@ -1,27 +1,27 @@
-package ru.maltseva.home_library.aController.authorization.implCreationClient;
+package ru.maltseva.home_library.aController.implCreationClient;
 
-import ru.maltseva.home_library.aController.authorization.CreationClient;
+import ru.maltseva.home_library.aController.CreationUser;
 import ru.maltseva.home_library.bService.ClientService;
 import ru.maltseva.home_library.bService.ServiceException;
 import ru.maltseva.home_library.bService.ServiceProvider;
-import ru.maltseva.home_library.entity.Client;
+import ru.maltseva.home_library.entity.User;
 
-public class CreationClientImpl implements CreationClient {
+public class CreationUserImpl implements CreationUser {
 
     private final ServiceProvider serviceProvider = ServiceProvider.getInstance();
-    private static CreationClientImpl instance = new CreationClientImpl();
+    private static CreationUserImpl instance = new CreationUserImpl();
 
-    private CreationClientImpl() {
+    private CreationUserImpl() {
     }
 
-    public static CreationClientImpl getInstance() {
+    public static CreationUserImpl getInstance() {
         return instance;
     }
 
     @Override
-    public Client creationClient(String request) {
+    public User creationClient(String request) {
         ClientService clientService;
-        Client client = null;
+        User user = null;
 
         String[] params;
         String login = null;
@@ -37,10 +37,10 @@ public class CreationClientImpl implements CreationClient {
             }
         }
         try {
-            client = clientService.clientCreation(login);
+            user = clientService.clientCreation(login);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        return client;
+        return user;
     }
 }

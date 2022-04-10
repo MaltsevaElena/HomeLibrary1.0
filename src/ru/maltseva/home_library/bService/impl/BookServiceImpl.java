@@ -45,27 +45,44 @@ public class BookServiceImpl implements BookService {
             throw new ServiceException(e);
         }
 
-        for (String line: allBookList){
-            if (!line.contains(request)){
-                allBookList.remove(line);
+        for (int i = 0; i < allBookList.size(); i++) {
+            if (!allBookList.get(i).contains(request)) {
+                allBookList.remove(i);
+                --i;
             }
         }
-
         searchBook = createBook(allBookList);
 
         return searchBook;
     }
 
-
     @Override
-    public boolean addBook(Book book) throws ServiceException {
+    public boolean addBook(String bookLine) throws ServiceException {
         boolean result;
         BookDAO bookDAO;
+        Book book;
+        String[] bookParameter;
+        int year;
+        TypeBook typeBook;
 
         bookDAO = provider.getBookDAO();
+        bookParameter = bookLine.split(" - ");
+
+        for (int i = 0; i < bookParameter.length; i++) {
+            bookParameter[i] = bookParameter[i].split("=")[1];
+        }
+        year = Integer.parseInt(bookParameter[2]);
+        if (bookParameter[3].equalsIgnoreCase(TypeBook.PAPER_BOOK.getName())) {
+            typeBook = TypeBook.PAPER_BOOK;
+        } else {
+            typeBook = TypeBook.EBOOK;
+        }
+
+        book = new Book(bookParameter[0], bookParameter[1], year, typeBook, bookParameter[4]);
 
         try {
             result = bookDAO.addBook(book);
+
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -102,7 +119,6 @@ public class BookServiceImpl implements BookService {
         return result;
     }
 
-
     public List<Book> createBook(List<String> allBookList) throws ServiceException {
         List<Book> allBook = new ArrayList<>();
         String[] array;
@@ -113,6 +129,10 @@ public class BookServiceImpl implements BookService {
 
         for (String line : allBookList) {
             array = line.split(" - ");
+            for (int i = 0; i < array.length; i++) {
+                array[i] = array[i].split("=")[1];
+            }
+
             try {
                 id = Integer.parseInt(array[0]);
                 year = Integer.parseInt(array[3]);
@@ -120,7 +140,7 @@ public class BookServiceImpl implements BookService {
                 throw new ServiceException(e);
             }
 
-            if (array[4].equals("Бумажная_книга")) {
+            if (array[4].equals("PAPER_BOOK")) {
                 typeBook = TypeBook.PAPER_BOOK;
             } else {
                 typeBook = TypeBook.EBOOK;

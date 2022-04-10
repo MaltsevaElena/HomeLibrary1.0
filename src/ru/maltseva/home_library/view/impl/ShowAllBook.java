@@ -9,7 +9,7 @@ public class ShowAllBook implements ShowBook {
     @Override
     public void showBook(List<Book> allBook) {
         for (Book book :allBook) {
-            System.out.println("Название: "+book.getName()+", автор: "+ book.getAuthor()+
+            System.out.println("ID="+book.getId()+ " название: "+book.getName()+", автор: "+ book.getAuthor()+
                     ", год издания: "+book.getYear()+", тип книги: "+book.getTypeBook().toString());
             System.out.println("Описание: "+book.getDescription());
             System.out.println();

@@ -1,6 +1,7 @@
 package ru.maltseva.home_library.bService;
 
-import ru.maltseva.home_library.entity.Client;
+import ru.maltseva.home_library.entity.Book;
+import ru.maltseva.home_library.entity.User;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface ClientService {
 
     boolean registration(String request) throws ServiceException;
 
-    Client clientCreation(String login) throws ServiceException;
+    User clientCreation(String login) throws ServiceException;
 
-    List<String> sendEmail(String allEmail) throws ServiceException;
+    boolean sendEmail(String allEmail, String book) throws ServiceException;
 }

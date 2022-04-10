@@ -1,6 +1,6 @@
-package ru.maltseva.home_library.aController.authorization.implCommand;
+package ru.maltseva.home_library.aController.implCommand;
 
-import ru.maltseva.home_library.aController.authorization.Command;
+import ru.maltseva.home_library.aController.Command;
 import ru.maltseva.home_library.bService.ClientService;
 import ru.maltseva.home_library.bService.ServiceException;
 import ru.maltseva.home_library.bService.ServiceProvider;
@@ -10,7 +10,7 @@ import ru.maltseva.home_library.view.ViewProvider;
 public class Registration implements Command {
 
     private final ServiceProvider serviceProvider = ServiceProvider.getInstance();
-    private  final ViewProvider viewProvider = ViewProvider.getInstance();
+    private final ViewProvider viewProvider = ViewProvider.getInstance();
 
     @Override
     public boolean execute(String request) {
@@ -24,7 +24,6 @@ public class Registration implements Command {
         try {
             answer = clientService.registration(request);
         } catch (ServiceException e) {
-            // ошибка регистрации
             e.printStackTrace();
         }
 

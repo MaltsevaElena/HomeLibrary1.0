@@ -1,4 +1,4 @@
-package ru.maltseva.home_library.aController.authorization;
+package ru.maltseva.home_library.aController;
 
 public class CommandController implements Controller {
 
@@ -10,6 +10,7 @@ public class CommandController implements Controller {
         String commandName;
         Command command;
         boolean response;
+
 
         commandName = request.split(" - ")[0];
         //выделили название команды

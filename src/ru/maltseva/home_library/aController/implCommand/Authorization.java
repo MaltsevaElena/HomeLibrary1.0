@@ -1,7 +1,7 @@
-package ru.maltseva.home_library.aController.authorization.implCommand;
+package ru.maltseva.home_library.aController.implCommand;
 
 
-import ru.maltseva.home_library.aController.authorization.Command;
+import ru.maltseva.home_library.aController.Command;
 import ru.maltseva.home_library.bService.ClientService;
 import ru.maltseva.home_library.bService.ServiceException;
 import ru.maltseva.home_library.bService.ServiceProvider;

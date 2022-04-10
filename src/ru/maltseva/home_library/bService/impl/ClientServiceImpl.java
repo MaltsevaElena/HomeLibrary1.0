@@ -6,7 +6,7 @@ import ru.maltseva.home_library.cDao.ClientDAO;
 import ru.maltseva.home_library.cDao.DAOException;
 import ru.maltseva.home_library.cDao.DAOProvider;
 import ru.maltseva.home_library.entity.Administrator;
-import ru.maltseva.home_library.entity.Client;
+import ru.maltseva.home_library.entity.Book;
 import ru.maltseva.home_library.entity.User;
 
 import java.util.List;
@@ -48,8 +48,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client clientCreation(String login) throws ServiceException {
-        Client client;
+    public User clientCreation(String login) throws ServiceException {
+        User user;
 
         String line;
         String[] params;
@@ -71,26 +71,32 @@ public class ClientServiceImpl implements ClientService {
         }
 
         if (params[4].equals("Admin")) {
-            client = new Administrator(params[0], params[1], params[2], params[3]);
+            user = new Administrator(params[0], params[1], params[2], params[3]);
         } else {
-            client = new User(params[0], params[1], params[2], params[3]);
+            user = new User(params[0], params[1], params[2], params[3]);
         }
 
-        return client;
+        return user;
     }
 
     @Override
-    public List<String> sendEmail(String roleUser) throws ServiceException {
+    public boolean sendEmail(String roleUser, String message) throws ServiceException {
         ClientDAO clientDAO;
-        List<String> email;
+        List<String> emails;
 
         clientDAO = provider.getClientDAO();
         try {
-            email = clientDAO.email(roleUser);
+            emails = clientDAO.email(roleUser);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
 
-        return email;
+        System.out.println(message);
+
+        for (String email : emails) {
+            System.out.println(email);
+        }
+
+        return emails.size()>0;
     }
 }

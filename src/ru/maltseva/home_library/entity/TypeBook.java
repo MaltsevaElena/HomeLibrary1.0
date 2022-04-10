@@ -4,7 +4,12 @@ public enum TypeBook {
 
     PAPER_BOOK ("Бумажная книга"), EBOOK ("Электронная книга");
 
-    TypeBook (String typeBook){
+    String name;
+    TypeBook (String name){
+        this.name = name;
+    }
 
+       public String getName() {
+        return name;
     }
 }

@@ -1,6 +1,6 @@
-package ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand;
+package ru.maltseva.home_library.aController.implEnterToConsoleCommand;
 
-import ru.maltseva.home_library.aController.authorization.EnterToConsoleCommand;
+import ru.maltseva.home_library.aController.EnterToConsoleCommand;
 import ru.maltseva.home_library.bService.util.ValidatorAuthentication;
 
 import java.io.BufferedReader;
@@ -41,7 +41,7 @@ public class EnterAuthorization implements EnterToConsoleCommand {
             while (!validator.isPassword(validationLine)) {
                 System.out.println("""
                         Пароль должен содержать хотя бы одну цифру, один символ в нижнем и верхнем регистре,
-                        один спец.символ [@#$%^&+=], и не содержать пробелов. 
+                        один спец.символ [@#$%^&+=], и не содержать пробелов.
                         Длина пароля от 8 до 20 символов.
                         Повторите ввод.""");
                 validationLine = reader.readLine();

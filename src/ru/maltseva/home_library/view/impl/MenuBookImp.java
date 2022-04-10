@@ -11,14 +11,14 @@ public class MenuBookImp implements MenuBook {
             System.out.println("1 - Просмотр книг в каталоге.");
             System.out.println("2 - Поиск книг в каталоге.");
             System.out.println("3 - Добавить книгу."); //переслать администратору на емаил.
-            
+
         } else if (role == Role.ADMIN) {
             System.out.println("Выберите следующий пункт меню: ");
             System.out.println("1 - Просмотр книг в каталоге.");
             System.out.println("2 - Поиск книг в каталоге.");
             System.out.println("3 - Добавить книгу.");
-            System.out.println("4 - Добавить описание книги."); //+рассылка на емаил
-            System.out.println("5 - Редактирование каталога????");
+            System.out.println("4 - Редактирование книги."); //+рассылка на емаил
+            System.out.println("5 - Удаление книги.");
         }
     }
 }

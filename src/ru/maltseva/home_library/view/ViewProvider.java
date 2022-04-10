@@ -1,13 +1,13 @@
 package ru.maltseva.home_library.view;
 
-import ru.maltseva.home_library.view.impl.AnswerForUserImpl;
-import ru.maltseva.home_library.view.impl.MenuBookImp;
-import ru.maltseva.home_library.view.impl.MenuSingInImp;
+import ru.maltseva.home_library.view.impl.*;
 
 public class ViewProvider {
     private final AnswerForUser answerForUser;
     private final MenuSingIn menuSingIn;
     private final MenuBook menuBook;
+    private final ShowBook showBook;
+    private final AnswerToActionOnBook answerToActionOnBook;
 
     private static ViewProvider instance = new ViewProvider();
 
@@ -16,6 +16,8 @@ public class ViewProvider {
         answerForUser = new AnswerForUserImpl();
         menuSingIn = new MenuSingInImp();
         menuBook = new MenuBookImp();
+        showBook = new ShowAllBook();
+        answerToActionOnBook = new AnswerDeleteBookImpl();// сделать map
     }
 
     public static ViewProvider getInstance(){
@@ -32,5 +34,9 @@ public class ViewProvider {
 
     public MenuBook getMenuBook() {
         return menuBook;
+    }
+
+    public ShowBook getShowBook() {
+        return showBook;
     }
 }

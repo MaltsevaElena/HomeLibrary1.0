@@ -1,8 +1,8 @@
 package ru.maltseva.home_library.entity;
 
-public class Administrator extends Client{
+public class Administrator extends User{
 
-    private Role userRole = Role.ADMIN;
+    private final Role userRole = Role.ADMIN;
 
     public Administrator() {
     }

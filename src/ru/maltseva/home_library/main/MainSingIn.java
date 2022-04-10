@@ -1,11 +1,11 @@
 package ru.maltseva.home_library.main;
 
-import ru.maltseva.home_library.aController.authorization.*;
-import ru.maltseva.home_library.aController.authorization.implCreationClient.CreationClientImpl;
-import ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand.EnterAuthorization;
-import ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand.EnterRegistration;
-import ru.maltseva.home_library.aController.authorization.implEnterToConsoleMenu.EnterNumberMenu;
-import ru.maltseva.home_library.entity.Client;
+import ru.maltseva.home_library.aController.*;
+import ru.maltseva.home_library.aController.implCreationClient.CreationUserImpl;
+import ru.maltseva.home_library.aController.implEnterToConsoleCommand.EnterAuthorization;
+import ru.maltseva.home_library.aController.implEnterToConsoleCommand.EnterRegistration;
+import ru.maltseva.home_library.aController.implEnterToConsoleMenu.EnterNumberMenu;
+import ru.maltseva.home_library.entity.User;
 import ru.maltseva.home_library.view.MenuSingIn;
 import ru.maltseva.home_library.view.impl.MenuSingInImp;
 
@@ -26,8 +26,8 @@ public class MainSingIn {
 
         boolean resultSingIn = false;
 
-        CreationClient creationClient;
-        Client client;
+        CreationUser creationUser;
+        User user;
 
         //вывели на экран приветствие
         menuSingIn = new MenuSingInImp();
@@ -48,7 +48,7 @@ public class MainSingIn {
 
             //Authorization - login=malceva - password=1234
             request = enterCommand.enterData().toString();
-            //создадим контроллер, он создал провайдер, теперь нужно передать строку для вызова нужного класса
+            //создадим контроллер, он создал провайдер
             controllerProvider = ControllerProvider.getInstance();
             controller = controllerProvider.getController();
 
@@ -57,9 +57,9 @@ public class MainSingIn {
 
         }
 
-        creationClient = CreationClientImpl.getInstance();
-        client = creationClient.creationClient(request);
+        creationUser = CreationUserImpl.getInstance();
+        user = creationUser.creationClient(request);
 
-        MainBook.start(client);
+        MainBook.start(user);
     }
 }

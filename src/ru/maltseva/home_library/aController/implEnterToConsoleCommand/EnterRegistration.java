@@ -1,6 +1,6 @@
-package ru.maltseva.home_library.aController.authorization.implEnterToConsoleCommand;
+package ru.maltseva.home_library.aController.implEnterToConsoleCommand;
 
-import ru.maltseva.home_library.aController.authorization.EnterToConsoleCommand;
+import ru.maltseva.home_library.aController.EnterToConsoleCommand;
 import ru.maltseva.home_library.bService.ClientService;
 import ru.maltseva.home_library.bService.ServiceException;
 import ru.maltseva.home_library.bService.ServiceProvider;
