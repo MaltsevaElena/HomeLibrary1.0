@@ -132,7 +132,7 @@ public class FileBookDAOImpl implements BookDAO {
                 id = Integer.parseInt(listBook.get(i).split(" - ")[0].split("=")[1]);
                 if (id == idBook) {
                     listBook.remove(i);
-                    --i;
+
                 }
                 writer.write(listBook.get(i));
                 writer.append("\n");

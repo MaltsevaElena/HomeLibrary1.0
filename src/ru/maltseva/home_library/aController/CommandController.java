@@ -16,7 +16,7 @@ public class CommandController implements Controller {
         //выделили название команды
         command = commandProvider.getCommands(commandName);
         //запросили команду
-        response = command.execute(request); // результат авторизации (добро пожаловать или не верный лог)
+        response = command.execute(request);
         // в команду передали введеную строку
 
         return response;

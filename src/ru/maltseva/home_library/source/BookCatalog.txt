@@ -1,7 +1,6 @@
 id=1 - name=Python - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
 id=2 - name=C++ - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
 id=4 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
-id=5 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
 id=7 - name=Java - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
 id=8 - name=Сказки - author=Агния Барто - year=1970 - typeBook=PAPER_BOOK - description=Детские сказки
 id=9 - name=Детские сказки - author=Агния Барто - year=1975 - typeBook=EBOOK - description=Сказки для детейid=1 - name=Python - author=Ekkel - year=2018 - typeBook=EBOOK - description=Книга для изучения Java
