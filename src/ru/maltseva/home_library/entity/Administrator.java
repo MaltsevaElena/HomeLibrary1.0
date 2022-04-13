@@ -1,6 +1,8 @@
 package ru.maltseva.home_library.entity;
 
-public class Administrator extends User{
+import java.io.Serializable;
+
+public class Administrator extends User implements Serializable {
 
     private final Role userRole = Role.ADMIN;
 

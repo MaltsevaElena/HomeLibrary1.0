@@ -1,13 +1,12 @@
 package ru.maltseva.home_library.main;
 
-import ru.maltseva.home_library.aController.*;
+import ru.maltseva.home_library.controller.*;
 import ru.maltseva.home_library.entity.Role;
 import ru.maltseva.home_library.entity.User;
 import ru.maltseva.home_library.view.MenuBook;
 import ru.maltseva.home_library.view.ViewProvider;
 
 public class MainBook {
-
 
     public static void start(User user) {
         Controller controller;
@@ -48,7 +47,8 @@ public class MainBook {
             }
             case 3 -> {
                 enterCommand = enterToConsoleProvider.getEnterToConsoleCommand("EnterAddBook");
-                request = enterCommand.enterData().toString();
+                request = enterCommand.enterData().append(user.getUserRole().toString()).toString();
+
             }
             case 4 -> {
                 enterCommand = enterToConsoleProvider.getEnterToConsoleCommand("EnterEditingBook");
@@ -64,7 +64,6 @@ public class MainBook {
         controllerProvider = ControllerProvider.getInstance();
         controller = controllerProvider.getController();
 
-        //передали строку в контроллер
         resultBookAction = controller.doAction(request);
         System.out.println("Результат выполнения команды: "+ resultBookAction);
     }

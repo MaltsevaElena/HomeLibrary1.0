@@ -1,7 +1,7 @@
 package ru.maltseva.home_library.main;
 
-import ru.maltseva.home_library.aController.*;
-import ru.maltseva.home_library.aController.implCreationClient.CreationUserImpl;
+import ru.maltseva.home_library.controller.*;
+import ru.maltseva.home_library.controller.implCreationClient.CreationUserImpl;
 import ru.maltseva.home_library.entity.User;
 import ru.maltseva.home_library.view.MenuSingIn;
 import ru.maltseva.home_library.view.ViewProvider;
@@ -27,13 +27,12 @@ public class MainSingIn {
         CreationUser creationUser;
         User user;
 
-        //вывели на экран приветствие
         viewProvider = ViewProvider.getInstance();
         menuSingIn = viewProvider.getMenuSingIn();
         menuSingIn.menuCommand();
 
-        //запросили у пользователя номер команды
-        enterToConsoleProvider= EnterToConsoleProvider.getInstance();
+
+        enterToConsoleProvider = EnterToConsoleProvider.getInstance();
         enterMenu = enterToConsoleProvider.getEnterToConsoleMenu();
         responseMenu = enterMenu.enterNumberMenu(2);
 
@@ -44,17 +43,14 @@ public class MainSingIn {
             enterCommand = enterToConsoleProvider.getEnterToConsoleCommand("EnterRegistration");
         }
 
-        while (!resultSingIn) { //если команда завершиться с ошибкой, начать ввод данных снова
+        while (!resultSingIn) {
 
-            //Authorization - login=malceva - password=1234
             request = enterCommand.enterData().toString();
-            //создадим контроллер, он создал провайдер
+
             controllerProvider = ControllerProvider.getInstance();
             controller = controllerProvider.getController();
 
-            //передали строку в контроллер
             resultSingIn = controller.doAction(request);
-
         }
 
         creationUser = CreationUserImpl.getInstance();

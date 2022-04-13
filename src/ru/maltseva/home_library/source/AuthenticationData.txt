@@ -2,4 +2,4 @@ name=Elena - e-mail=elena@mail.ru - login=Elena - password=7623fc6081a28e273dfe5
 name=Viktor - e-mail=victor@mail.ru - login=Viktor - password=7623fc6081a28e273dfe5f3f3d077c8bd09936c4 - role=User
 name=Lion - e-mail=lion@mail.ru - login=Lions - password=9c45253a0c34ab0b28a256dc74029bd1f36387f0 - role=Admin
 name=Olga - e-mail=Olga@mail.ru - login=Olgaa - password=976244a0a01e2e657fc6b8c70ecb39b41ed4a7df - role=User
-name=Akhil - e-mail=akhil@mail.ru - login=Akhil - password=1965410303a92bcd23b40ea4203cfbf2ba60902a - role=User
+name=Kseniya - e-mail=kseniya@mail.ru - login=Kseniya - password=58ecff66bb6893936e6c52ef6ddad5870d80eb9f - role=User

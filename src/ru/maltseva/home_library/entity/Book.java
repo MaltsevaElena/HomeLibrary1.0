@@ -1,8 +1,9 @@
 package ru.maltseva.home_library.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Serializable {
 
     private static int count;
     private int id;

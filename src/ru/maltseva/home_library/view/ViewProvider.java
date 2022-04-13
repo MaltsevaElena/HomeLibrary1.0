@@ -11,7 +11,7 @@ public class ViewProvider {
     private final AnswerSendEmail answerSendEmail;
     private final AnswerDeleteBook answerDeleteBook;
 
-    private static ViewProvider instance = new ViewProvider();
+    private static final ViewProvider instance = new ViewProvider();
 
     private ViewProvider(){
 
